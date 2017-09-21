@@ -37,6 +37,58 @@ public class GildedRoseTest {
     
 	@Test
 	public void testUpdateEndOfDay() {
-		fail("Test not implemented");
+		GildedRose store = new GildedRose();
+		store.addItem(new Item("Aged Brie", 2, 10) );
+		Item itemBeforeUpdate = new Item("Aged Brie", 2, 10);
+		
+		store.updateEndOfDay();
+		
+		List<Item> items = store.getItems();
+		Item itemAfterUpdate = items.get(0);
+		
+		
+		assertTrue(itemBeforeUpdate.getQuality() < itemAfterUpdate.getQuality());
+		
+	}
+	@Test
+	public void testGildedRose_SellinValue() {
+		Item item = new Item("+5 Dexterity Vest", 10, 20);
+		int sellInValue =item.getSellIn();
+
+
+
+		assertNotNull(sellInValue);
+	}
+	@Test
+	public void testGildedRose_QualityValue() {
+		Item item = new Item("+5 Dexterity Vest", 10, 20);
+		int qualityValue =item.getQuality();
+
+
+		assertNotNull(qualityValue);
+	}
+	@Test
+	public void testGildRose_QuilityValue_NotNegative() {
+		GildedRose store = new GildedRose();
+		store.addItem(new Item("Aged Brie", 2, 10) );
+		
+		
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		store.updateEndOfDay();
+		
+		
+		List<Item> items = store.getItems();
+		Item item = items.get(0);
+		int qualityValue = item.getQuality();
+		
+		assertEquals("Quality value never negative", 0, qualityValue);
 	}
 }
